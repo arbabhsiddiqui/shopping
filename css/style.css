@@ -1,0 +1,139 @@
+html body{
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width:100%;
+}
+
+
+.v{
+	padding: 0;
+	margin: 0;
+}
+
+.bg-dark a{
+    color: aliceblue;
+    text-decoration: none;
+}
+
+.bg-dark a:hover{
+    color: orange;
+    text-decoration: none;
+}
+
+.bg-black{
+background-color: rgba(14,14,14,1.00);
+}
+
+.highlight{
+    color: orange;
+}
+
+.navbar-nav ul>li>a{
+    color:green;
+}
+
+.carousel-caption{
+    padding-bottom: 30%;
+}
+
+
+
+
+.carousel-caption h1{
+    color:#000;
+ font-weight: 100;   
+    
+    
+}
+ 
+
+.carousel-caption h2{
+    color:#000;
+ font-weight: 200;   
+    
+    
+}
+    
+    
+.btn-black{
+    background: transparent;
+    border: 1px solid black;
+    color:blueviolet;
+}
+
+
+.btn-black:hover{
+    color:#fff;
+    background: #262626;
+    border: 1px solid #fff;
+    
+    
+}
+
+
+    
+.btn-none{
+    background: transparent;
+    color:#fff;
+    padding: 0;
+    margin: 0;
+    
+}
+
+
+
+.bg-orange{
+    
+    background-color:#F0644F;
+    padding-bottom: 3%;
+    color:aliceblue;
+    text-align: center;    
+    }
+
+.m-right{
+    border-right: 2px solid #fff;
+}
+
+
+.bg-color{
+   background: linear-gradient(to top, #2c3e50, #3498db);
+}
+
+
+
+
+
+/*signup page*/
+
+.signupbg{
+    background: url(../images/slide2.jpg) no-repeat center center fixed;
+    background-size:cover;
+    
+ 
+}
+
+.signupheading{
+    text-transform: uppercase;
+    color:#fff;
+    padding: 0;
+    margin: 0;
+}
+
+.radiobtn{
+    font-size: 18px;
+    font-weight: 400;
+    color:#fff;
+    background: #768e9878;
+     
+}
+
+/*welcome page*/
+
+.welcomebg{
+    background: #EB5757;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #000000, #EB5757);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #000000, #EB5757); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+ color: aliceblue;
+}
+
