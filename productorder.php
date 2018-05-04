@@ -21,7 +21,7 @@ while($row=mysqli_fetch_array($s)){
 echo $productid+=$row['productid'].',';
 	
 	echo $p=$row['price'];
-	 echo $q=$row['qty'];
+	 echo $q=$row['qty'];S
 	
 }
 

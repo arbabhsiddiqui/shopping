@@ -3,31 +3,46 @@ include("connection.php");
 $msg="";
 
 
-if(isset($_REQUEST['btnlogin'])){
 
-    $id=$_REQUEST['id'];
-    $pwd=$_REQUEST['pwd'];
-    
-    
-    $runsql=mysqli_query($con,"select * from users where email='$id' and pwd='$pwd'");
-    
-    if(mysqli_num_rows($runsql)>0)
-	{
-		setcookie("em","$id");
-        header("location:welcome.php");
-    }
-    
-    else{
-        $msg="invalid user";
-    }
-    
-    
-    
-    
-}
 
 ?>
+<script>
+function login(){
+	var id=document.getElementById("id").value;
+	var pwd=document.getElementById("pwd").value;
+	 
+	
+	if(id==''){
+		alert("enter your email id");
+		document.getElementById("id").focus();
+		false();
+	}
+	
+	
+	else if(pwd==''){
+		alert("enter your password ");
+		document.getElementById("pwd").focus();
+		false();
+	}
+	else{
+		var r=new XMLHttpRequest();
+		var t=Math.random();
+		r.onreadystatechange=function(){
+			if(r.readyState==4){
+				alert(r.responseText);
+				window.location="welcome.php";
+			}
+		}
+		r.open("post","login.php?s="+t+"&id="+id+"&pwd="+pwd);
+		r.send();
+		
+		
+		
+		
+	}
+}
 
+</script>
 
 
     <div class="container-fluid bg-dark header-top d-none d-md-block">
@@ -59,12 +74,13 @@ if(isset($_REQUEST['btnlogin'])){
         <!-- Modal body -->
         <div class="modal-body">
           <form action="" method="post" class="form-group">
-            <div class="row pb-2"><input type="text" name="id" class="form-control pt-1 pb-1" placeholder="userid/email"></div>
-            <div class="row pb-2"><input type="password" name="pwd" class="form-control pt-1 pb-1" placeholder="password"></div> 
+            <div class="row pb-2"><input type="text" id="id" class="form-control pt-1 pb-1" placeholder="userid/email"></div>
+            <div class="row pb-2"><input type="password" id="pwd" class="form-control pt-1 pb-1" placeholder="password"></div> 
+            </form>
             <div class="row pt-2 ">
              <div class="col-sm-6">
                  
-				<input type="submit" class="btn btn-success" name="btnlogin" value="login">
+				 <button  class="btn btn-success" onclick="login()" >login</button>
 				 
                  
              </div>
@@ -72,8 +88,8 @@ if(isset($_REQUEST['btnlogin'])){
                  <a href="signup.php" class="btn btn-primary ">signup</a>
              </div>
             </div>  
-              <p><?php echo $msg; ?></p>
-          </form>
+             
+          
         </div>
         
         <!-- Modal footer -->

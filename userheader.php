@@ -1,11 +1,11 @@
 <?php
 include("connection.php");
 ?> 
-    
+<!--    top bar-->
           <div class="container-fluid bg-dark header-top d-none d-md-block">
 	    <div class="container">
 		    <div class="row text-light pt-2 pb-2">
-			    <div class="col-md-6"><i class="fa fa-envelope-o" aria-hidden="true"></i>moodyinks@gmail.com</div>
+			    <div class="col-md-4"><i class="fa fa-envelope-o" aria-hidden="true"></i>moodyinks@gmail.com</div>
 			    
 			    <div class="col-md-2">
 					<a href="logout.php">Logout</a>
@@ -13,27 +13,30 @@ include("connection.php");
                 <div class="col-md-2">
 					<a href="welcome.php">Edit profile</a>
 				</div>
+		      <div class="col-md-2"><a href="wishlist.php">wishlist
+			    <?php
+				$email=$_COOKIE['em'];	
+				$q=mysqli_query($con,"select * from wishlist where  email='$email' ");	
+						
+					
+					   echo mysqli_num_rows($q);?>
+			    </a>
+			    </div
 			    <div class="col-md-2"><a href="cartsave.php"> My Cart
 			    <?php
 				$email=$_COOKIE['em'];	
 				$q=mysqli_query($con,"select * from cart where  email='$email' ");	
 						
 					
-					   echo mysqli_num_rows($q);
-					
-				
-					
-					
-				
-					
-					
-				?>
+					   echo " : ".mysqli_num_rows($q);
+			?>
 			    </a>
 			    </div>
+			  >
 		    </div>
 	    </div>
     </div>
-    
+<!--    top bar ends-->
 
     <!--nav bar    -->
     <div class="container-fluid bg-black">
@@ -106,6 +109,6 @@ include("connection.php");
          </div>
      </nav>
    </div>
-     
+<!--     navbar ends-->
      
    

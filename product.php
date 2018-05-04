@@ -103,10 +103,10 @@ else{
 	<div class="container  pt-5 mt-5">
 	
 	<div class="row">
-	<?php 
+		<?php 
                 $take=mysqli_query($con,"select p.productname,p.price,p.image,p.catid,p.productid,c.catid from product p,cat c where p.catid=c.catid and c.catid=$catid");
-    if(mysqli_num_rows($take)>0)
-    { 
+    	if(mysqli_num_rows($take)>0)
+    	{ 
 		$i=0;
                 while($t=mysqli_fetch_array($take))
                 {
@@ -121,12 +121,12 @@ else{
 				<form method="post">
 					<h5><?php echo $t["productname"];?></h5>
 					<h6>$<?php echo $t["price"];?></h6>
-					<!--
+					
 					<input type="hidden" class="form-control-sm" id="jemail" value="<?php echo $_COOKIE["em"];?> " disabled>
 					<input type="hidden" class="form-control-sm" id="jproductid" value="<?php echo $t["productid"];?> ">
 					<input type="hidden" class="form-control-sm" id="jprice" value="<?php echo $t["price"];?> " disabled>
 					<p>qty</p>
--->
+
 					<input type="text" class="form-control-sm" id="jqty<?php echo $i;?>"  value="1">
 					
 					</form>
@@ -154,13 +154,13 @@ else{
                 
                 }
     }
-    else
-    {    
+    	else
+    	{    
     ?>
     <a style="color:white">OUT OF STOCK</a>
     <?php
     }
-    ?>
+    	?>
 			</div>
 	
 </div>

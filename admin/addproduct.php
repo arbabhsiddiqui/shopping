@@ -194,7 +194,7 @@ else{
                             <td><?php echo $row["catid"]; ?></td>
                             <td><?php echo $row["productname"]; ?></td>
                             <td><?php echo $row["price"]; ?></td>
-                            <td><img src="images/<?php echo $row["image"]; ?>" style="width:50px" /></td>
+                            <td><img src="productImages/<?php echo $row["image"]; ?>" style="width:50px" /></td>
                         </tr>
                     <?php    
                     }

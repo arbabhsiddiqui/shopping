@@ -25,7 +25,7 @@ while($row1=mysqli_fetch_array($qc))
 	$pid=$row1["productid"];
 	$qty=$row1["qty"];
 	$price=$row1["price"];	
-	$qdt=mysqli_query($con,"insert into orderdetail(orderid,productid,qty,price,email)values('$oid','$pid','$qty','$price','$email')");
+	$qdt=mysqli_query($con,"insert into orderdetail(orderid,productid,qty,price)values('$oid','$pid','$qty','$price')");
 }
 
 $del=mysqli_query($con,"delete from cart where Email='$email'");

@@ -9,11 +9,11 @@ include("connect.php");
 
 
 
-if(!isset($_COOKIE["em"])){
-	include("../header.php");
+if(!isset($_COOKIE["cok"])){
+	include("header.php");
 }
 else{
-    include("../userheader.php");
+    include("adminheader.php");
 }
 
 
@@ -63,7 +63,8 @@ else{
  <div class="container pt-5 pb-5">
  	<div class="row text-center">
  		<div class="col-sm-12 ">
- 			<div class="row ">
+ 			
+ 			<h3>all pending orders</h3>
  			<?php
 						$email=$_COOKIE['em'];
 						$q=mysqli_query($con,"select * from orderdetail group by orderid ");
@@ -77,31 +78,36 @@ else{
 							
 							$id=$row['orderid'];
 				?>
- 				<div class="col-sm-12">
- 				 <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#<?php echo 'a'.$i;?>">
- 				 <?php echo $row['orderid'];  ?>
+				<div class="row pt-2 pb-2 ">
+ 				<div class="col-sm-12 ">
+ 				<button type="button" class="btn btn-bg btn-primary" data-toggle="collapse" data-target="#<?php echo 'a'.$i;?>">
+ 				 order number is: <?php echo $row['orderid']." " ?>
  				</button>
-  <div id="<?php echo 'a'.$i;?>" class="collapse">
- <table class="table table-borderd text-light bg-dark">
+  <div id="<?php echo 'a'.$i;?>" class="collapse bg-dark pt-5 pb-5">
+ <table class="table table-borderd text-light bg-dark  ">
 					<thead>
 						<th>s.no</th>
-						<th>email</th>
+						<th>image</th>
 						<th>orderid</th>
+						<th>productid</th>
 						<th>price</th>
 						<th>qty</th>
 					</thead>
 					<tbody>
  					<tr>
  					<?php
- 					$x=mysqli_query($con,"select * from orderdetail  where orderid='$id'");
+							$j=0;
+ 					$x=mysqli_query($con,"select o.detailid,o.orderid,o.productid,
+						o.qty,o.price,p.productid,p.image from orderdetail o ,product p  where p.productid=o.productid and orderid='$id'");
 							while($row1=mysqli_fetch_array($x)){
+								$j++;
 								$total+=($row1['price']*$row1['qty']);
 								$tqty+=$row1['qty'];
 								?>
-							<td><?php echo $i; ?></td>
-							<td><?php echo $row1['email'] ?></td>
-							
+							<td><?php echo $j; ?></td>
+							<td><img src="productImages/<?php echo $row1['image'] ?>" alt="" width=50px;></td>
 							<td><?php echo $row1['orderid'] ?></td>
+							<td><?php echo $row1['productid']?></td>
 							<td><?php echo $row1['price']?></td>
 							<td><?php echo $row1['qty']?></td>
 						</tr>
@@ -116,6 +122,8 @@ else{
 						<th>total</th>
 						<th></th>
 						<th></th>
+						<th></th>
+						
 						<th><?php echo $total;?></th>
 						<th><?php echo $tqty;?></th>
 					</tfooter>
@@ -124,14 +132,16 @@ else{
 					
 					
 				</table>
+				<button class="btn btn-danger " >order complete</button>
 				</div>
  				
  				
 
  				</div>
+ 				</div>
  				<?php }?>
  			
- 		</div>
+ 		
  	</div>
  </div>
  </div>

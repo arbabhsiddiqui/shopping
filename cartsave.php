@@ -104,6 +104,11 @@ else{
 						$tqty=0;
 						$q=mysqli_query($con,"select p.image,p.productname,c.price,c.qty from product p,cart c where p.productid=c.productid and c.email='$email'");
 						$i=0;
+						
+						if(mysqli_num_rows==0){
+							echo "ooo";
+						}
+						else{
 						while($row=mysqli_fetch_array($q))
 						{
 							$i++;
@@ -123,7 +128,8 @@ else{
 						<?php
 							
 							
-						} 
+						}
+						}
 						
 						?>
 						

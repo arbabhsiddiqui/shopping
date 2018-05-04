@@ -58,10 +58,10 @@ else{
  				</div>
  				<div class="row">
  				<div class="col-sm-12">
- 					<h6>your order number is:<?php 
+ 					<h6>your order number is :<?php 
 							$q=mysqli_query($con,"select * from orderdetail ");
 							$row=mysqli_fetch_array($q);
-							echo $orderid=$row['detailid'].$row['email'];
+							echo $orderid=' '.$row['detailid'];
 						
 						?></h6>
  				</div>
@@ -77,9 +77,9 @@ else{
 					</thead>
 					<tbody>
  					<?php
-						$email=$_COOKIE['em'];
+						
 						$q=mysqli_query($con,"select o.detailid,o.orderid,o.productid,
-						o.qty,o.price,p.productid,p.image from orderdetail o ,product p  where p.productid=o.productid and email='$email'");
+						o.qty,o.price,p.productid,p.image from orderdetail o ,product p  where p.productid=o.productid ");
 						$i=0;
 					$total=0;
 					$tqty=0;
