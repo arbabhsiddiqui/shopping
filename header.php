@@ -29,8 +29,16 @@ function login(){
 		var t=Math.random();
 		r.onreadystatechange=function(){
 			if(r.readyState==4){
-				alert(r.responseText);
-				window.location="welcome.php";
+				if(r.responseText=="valid")
+					{
+						window.location="welcome.php";		
+					}
+				else
+					{
+						alert(r.responseText);
+						
+					}
+				
 			}
 		}
 		r.open("post","login.php?s="+t+"&id="+id+"&pwd="+pwd);
@@ -45,16 +53,15 @@ function login(){
 </script>
 
 
-    <div class="container-fluid bg-dark header-top d-none d-md-block">
+    <div class="container-fluid bg-topbar header-top d-none d-md-block">
 	    <div class="container">
 		    <div class="row text-light pt-2 pb-2">
 			    <div class="col-md-5"><i class="fa fa-envelope-o" aria-hidden="true"></i>moodyinks@gmail.com</div>
 			    <div class="col-md-3">
 				
 			    </div>
-			    <div class="col-md-2"><i class="fa fa-user-o" aria-hidden="true"></i> <button data-toggle="modal" data-target="#myModal" class="btn btn-none ">
-			     Account   
-			    </button></div>
+			    <div class="col-md-2"><i class="fa fa-user-o" aria-hidden="true"></i> <input type="button" data-toggle="modal" data-target="#myModal" class="btn btn-none " value=" Account ">
+			    </div>
 			    <div class="col-md-2"><i class="fa fa-cart-plus" aria-hidden="true"></i> My Cart - $0.00</div>
 		    </div>
 	    </div>
@@ -104,8 +111,8 @@ function login(){
     
     
     <!--nav bar    -->
-    <div class="container-fluid bg-black">
-	    <nav class="container navbar navbar-expand-lg navbar-dark bg-black">
+    <div class="container-fluid bg-navbar">
+	    <nav class="container navbar navbar-expand-lg navbar-dark ">
           <a class="navbar-brand" href="index.php"><img src="images/logo.png" alt="logo"></a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -116,12 +123,10 @@ function login(){
               <li class="nav-item active">
                 <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
-              </li>
+              
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  cat
+                  products
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 
@@ -153,15 +158,10 @@ function login(){
                     <?php    
                     }
                     ?>
-                  <a class="dropdown-item" href="#">Action</a>
-                  <a class="dropdown-item" href="#">Another action</a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="#">Something else here</a>
+                  
                 </div>
               </li>
-              <li class="nav-item">
-                <a class="nav-link disabled" href="#">Disabled</a>
-              </li>
+              
               <li class="nav-item d-block d-md-none">
                 <button data-toggle="modal" data-target="#myModal" class="btn btn-none nav-link">
 			     Account   
@@ -170,7 +170,7 @@ function login(){
            </ul>
            <form class="form-inline my-2 my-lg-0">
               <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+              <button class="btn btn-info my-2 my-sm-0" type="submit">Search</button>
            </form>
          </div>
      </nav>

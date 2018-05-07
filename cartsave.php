@@ -86,18 +86,10 @@ else{
   <body>
 <!--   -->
 
-	<div class="container-fluid bg-dark pt-5 pb-5">
+	<div class="container-fluid bg- pt-5 pb-5">
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-8 " >
-				<table class="table table-borderd text-light">
-					<thead>
-						<th>image</th>
-						<th>product name</th>
-						<th>price</th>
-						<th>qty</th>
-					</thead>
-					<tbody>
 					<?php
 						$email=$_COOKIE['em'];
 						$total=0;
@@ -105,48 +97,47 @@ else{
 						$q=mysqli_query($con,"select p.image,p.productname,c.price,c.qty from product p,cart c where p.productid=c.productid and c.email='$email'");
 						$i=0;
 						
-						if(mysqli_num_rows==0){
+						if(mysqli_num_rows($q)==0){
 							echo "ooo";
 						}
 						else{
-						while($row=mysqli_fetch_array($q))
-						{
-							$i++;
-							$total+=($row['price']*$row['qty']);
-							$tqty+=$row['qty'];
-						?>
-						<tr>
-							<td><img height=50; src="admin/productImages/<?php echo $row["image"]; ?>" class=""></td>
-							<td><?php echo $row['image'] ?></td>
-							<td><?php echo $row['price']?></td>
-							<td><?php echo $row['qty']?></td>
-						</tr>
-						
-						
-						
-						
+							?>
+							<table class="table table-borderd text-light">
+							<thead>
+								<th>image</th>
+								<th>product name</th>
+								<th>price</th>
+								<th>qty</th>
+						    </thead>
+							<tbody>
+							<?php
+								while($row=mysqli_fetch_array($q))
+								{
+									$i++;
+									$total+=($row['price']*$row['qty']);
+									$tqty+=$row['qty'];
+							?>
+							<tr>
+								<td><img height=50; src="admin/productImages/<?php echo $row["image"]; ?>" class=""></td>
+								<td><?php echo $row['image'] ?></td>
+								<td><?php echo $row['price']?></td>
+								<td><?php echo $row['qty']?></td>
+							</tr>
+							<?php
+							 }
+							?>
+							</tbody>
+							<tfooter>
+								<th>total</th>
+								<th></th>
+								<th><?php echo $total;?></th>
+								<th><?php echo $tqty;?></th>
+							</tfooter>
+				       </table>	
 						<?php
-							
-							
-						}
-						}
-						
+					        }
 						?>
-						
-					</tbody>
-					<tfooter>
-						<th>total</th>
-						<th></th>
-						<th><?php echo $total;?></th>
-						<th><?php echo $tqty;?></th>
-					</tfooter>
-					
-					
-					
-					
-				</table>	
-					
-				</div>
+					</div>
 				<div class="col-sm-4  text-center text-light">
 					<div class="row">
 						<div class="col-sm-12">

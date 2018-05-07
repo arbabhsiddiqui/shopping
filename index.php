@@ -100,14 +100,14 @@ else{
       <div class="modal-content bg-info">
       
         <!-- Modal Header -->
-        <div class="modal-header">
-          <h4 class="modal-title text-light">login here</h4>
+        <div class="modal-header text-center">
+          <h4 class="modal-title text-light text-center">login</h4>
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         
         <!-- Modal body -->
         <div class="modal-body">
-          <form action="" method="post" class="form-group">
+          <form  method="post" class="form-group">
             <div class="row pb-2"><input type="text" name="id" class="form-control pt-1 pb-1" placeholder="userid/email"></div>
             <div class="row pb-2"><input type="password" name="pwd" class="form-control pt-1 pb-1" placeholder="password"></div> 
             <div class="row pt-2 ">
@@ -146,16 +146,16 @@ else{
     <div class="carousel-item active">
       <img class="d-block w-100" src="images/phone.jpg" alt="First slide">
       <div class="carousel-caption d-none d-md-block">
-       <h1 class="display-3">BEST WINTER COLLECTION</h2>
-       <h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+       <h1 class="display-3">BEST WINTER COLLECTION</h1>
+       <h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
        <button class="btn btn-black btn-lg">Shop Now.</button>
       </div>
     </div>
     <div class="carousel-item">
       <img class="d-block w-100" src="images/phone.jpg" alt="Second slide">
       <div class="carousel-caption d-none d-md-block">
-       <h1 class="display-3">BEST WINTER COLLECTION</h2>
-       <h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+       <h1 class="display-3">BEST WINTER COLLECTION</h1>
+       <h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
         <button class="btn btn-black btn-lg">Shop Now.</button>
       </div>
     </div>
@@ -192,7 +192,7 @@ else{
 </div>
 
 <!--   latest product  -->
-<div class="container-fluid bg-color pt-5 pb-5">
+<div class="container-fluid section-b-bg pt-5 pb-5">
 <!--  latest product heading  -->
     <div class="container pt-2">
 	    <div class="row">
@@ -202,7 +202,7 @@ else{
     </div>
 <!--latest product heading ends-->
     <div class="container pt-2">
-	    <div class="row">
+	    <div class="row text-light">
 				 <?php
 					$i=0;
 					$q1=mysqli_query($con,"select * from product");
@@ -213,31 +213,31 @@ else{
 					$i++;
 				  ?>
 					<div class="col-sm-3 pt-2 pb-2">
-						<div class="card">
-							<img height="250"; src="admin/productImages/<?php echo $row['image']?>" alt="productimg">
+						<div class="card text-center">
+							<img height="230" src="admin/productImages/<?php echo $row['image']?>" alt="productimg" >
 							<div class="card-body">
 								<form method="post">
 									<h5><?php echo $row["productname"];?></h5>
 									<h6>$<?php echo $row["price"]?></h6>
 									<input type="hidden" class="form-control-sm" id="jemail" 
-									  value="<?php echo $_COOKIE["em"];?> " disabled>
+									  value="<?php echo $_COOKIE['em'];?> " disabled>
 									<input type="hidden" class="form-control-sm" id="jproductid"
-									  value="<?php echo $row["productid"];?> ">
+									  value="<?php echo $row['productid'];?>">
 									<input type="hidden" class="form-control-sm" id="jprice"
-									  value="<?php echo $row["price"];?> " disabled>
+									  value="<?php echo $row['price'];?> " disabled>
 									<p>qty</p>
-									<input type="text" class="form-control-sm" id="jqty<?php echo $i;?>"  value="1">
+									<input type="text" class="form-control-sm" id="jqty+'<?php echo $i;?>'"  value="1">
 								</form>
 								 <?php
 								   if(!isset($_COOKIE['em'])){
 								 ?>
-								   <button data-toggle="modal" data-target="#myModal" class="btn btn-danger ">
-									 add to cart</button>
+								   <input type="button" data-toggle="modal" data-target="#myModal" class="btn btn-primary" value="add to cart">
+									 
 								<?php
 									} else {
 								?>
-								   <button class="btn btn-danger" onclick="cart(<?php echo $row['productid'];?>,
-									 <?php echo $row['price']; ?>,<?php echo $i;?>)">Add To Cart</button>
+								   <input type="button" class="btn btn-primary" onclick="cart(<?php echo $row['productid'];?>,
+									 <?php echo $row['price']; ?>,<?php echo $i;?>)" value="Add To Cartz">
 							   <?php
 								 }
 							   ?>
@@ -250,208 +250,85 @@ else{
 
 			</div>
 		</div>
+
+
+
+
+<div class="container pt-5 pb-5">
+	<div class="row">
+		    	<div class="col-sm-12">
+		    		<h4>most selling product</h4>
+		    	</div>
+		    </div>	
+	<div class="row pt-2">
+		<?php 
+					$i=0;
+					$q2=mysqli_query($con,"select * from product");
+
+					$st1=rand(1,mysqli_num_rows($q2)-4);
+					$q3=mysqli_query($con,"select * from product limit $st1,4");
+					while($row2=mysqli_fetch_array($q3)){
+					$i++;
+		?>
+		<div class="col-sm-6 pt-5">
+		    <div class="row">
+		    	<div class="col-sm-2 productImages">
+		    		<img src="admin/productImages/<?php echo $row2['image']?>">
+		    	</div>
+		    	<div class="col-sm-4"></div>
+		    	<div class="col-sm-4">
+		    		<h6><?php echo $row2['productname'];?></h6>
+		    		<h6>price:<?php echo $row2['price'];?></h6>
+		    		<p class="text-justify">product details: Lorem ipsum dolor sit amet, </p>
+		    		<form method="post">
+							<input type="hidden" class="form-control" id="jemail" 
+									  value="<?php echo $_COOKIE['em'];?> " disabled>
+							<input type="hidden" class="form-control" id="jproductid"
+									  value="<?php echo $row['productid'];?>">
+									<input type="hidden" class="form-control" id="jprice"
+									  value="<?php echo $row['price'];?> " disabled>
+									<p>qty</p>
+									<input type="text" class="form-control" id="jqty+'<?php echo $i;?>'"  value="1">
+								</form>
+								 <?php
+								   if(!isset($_COOKIE['em'])){
+								 ?>
+								   <input type="button" data-toggle="modal" data-target="#myModal" class="btn btn-outline-info " value="add to cart">
+									 
+								<?php
+									} else {
+								?>
+								   <input type="button" class="btn btn-outline-info" onclick="cart(<?php echo $row['productid'];?>,
+									 <?php echo $row['price']; ?>,<?php echo $i;?>)" value="Add To Cartz">
+							   <?php
+								 }
+							   ?>
+								
+		    	</div>
+		    </div>
+			
+			
+			
+		</div>
+		
+		<?php }?>
+	</div>
+</div>
+
+
+
+
+
+
+
+
+
+
 </div>																				
 <!-- latest product ends     -->
       
 <!--new product-->
-<div class="container-fluid pt-5 pb-5">
-    <div class="container">
-	    <div class="row">
-		    <div class="col-md-4">
-			    <div class="row">
-				    <h4>MOST WANTED</h4>
-				</div>
-				<?php
-					$i=0;
-					$q=mysqli_query($con,"select * from product limit $st,3");
-					while($row=mysqli_fetch_array($q)){
-					$i++;
-				  ?>
-				<div class="media mt-5">
-				<div class="row">
-					<div class="col-sm-12">
-						<img src="admin/productImages/<?php echo $row['image'] ?>" height="200" class=" pt-2" alt="media-img"><br/>
-					</div>
-				</div>
-					<div class="row">
-						<div class="col-sm-12">
-							<form method="post">
-						<div class="media-body text-center mt-5">
-							<h5><?php echo $row['productname']?></h5>
-							<h6>$<?php echo " ".$row['price']?></h6>
-							<input type="hidden" class="form-control-sm" id="jemail" 
-							  value="<?php echo $_COOKIE["em"];?> " disabled>
-							<input type="hidden" class="form-control-sm" id="jproductid"
-							  value="<?php echo $row["productid"];?> ">
-							<input type="hidden" class="form-control-sm" id="jprice"
-							  value="<?php echo $row["price"];?> " disabled>
-							<p>qty</p>
-							<input type="text" class="form-control-sm" id="jqty<?php echo $i;?>"  value="1" >
-				   </form>
-						   <?php
-							if(!isset($_COOKIE['em'])){
-						     ?>
-							<button data-toggle="modal" data-target="#myModal" class="btn btn-danger mt-2 ">
-									 add to cart</button>
-						   <?php
-							  } else {
-						    ?>
-						    <button class="btn btn-danger mt-2" onclick="cart(<?php echo $row['productid'];?>,
-							<?php echo $row['price']; ?>,<?php echo $i;?>)">Add To Cart</button>
-							 <?php
-								 }
-							   ?>
-					
-					
-					
-					
-						</div>
-					</div>
-					
-					
-					</div>
-				</div>
-				
-				<?php
-					}
-				?>
-			
-				
-			</div>
-			
-			
-			<div class="col-md-4">
-			    <div class="row text-center">
-				    <h4>Premimum</h4>
-				</div>
-				<?php
-					$i=0;
-					$q=mysqli_query($con,"select * from product limit $st,3");
-					while($row=mysqli_fetch_array($q)){
-					$i++;
-				  ?>
-				<div class="media mt-5">
-				<div class="row">
-					<div class="col-sm-12">
-						<img src="admin/productImages/<?php echo $row['image'] ?>" height="200" class=" pt-2" alt="media-img"><br/>
-					</div>
-				</div>
-					<div class="row">
-						<div class="col-sm-12">
-							<form method="post">
-						<div class="media-body text-center mt-5">
-							<h5><?php echo $row['productname']?></h5>
-							<h6>$<?php echo " ".$row['price']?></h6>
-							<input type="hidden" class="form-control-sm" id="jemail" 
-							  value="<?php echo $_COOKIE["em"];?> " disabled>
-							<input type="hidden" class="form-control-sm" id="jproductid"
-							  value="<?php echo $row["productid"];?> ">
-							<input type="hidden" class="form-control-sm" id="jprice"
-							  value="<?php echo $row["price"];?> " disabled>
-							<p>qty</p>
-							<input type="text" class="form-control-sm" id="jqty<?php echo $i;?>"  value="1" >
-				   </form>
-						   <?php
-							if(!isset($_COOKIE['em'])){
-						     ?>
-							<button data-toggle="modal" data-target="#myModal" class="btn btn-danger mt-2 ">
-									 add to cart</button>
-						   <?php
-							  } else {
-						    ?>
-						    <button class="btn btn-danger mt-2" onclick="cart(<?php echo $row['productid'];?>,
-							<?php echo $row['price']; ?>,<?php echo $i;?>)">Add To Cart</button>
-							 <?php
-								 }
-							   ?>
-					
-					
-					
-					
-						</div>
-					</div>
-					
-					
-					</div>
-				</div>
-				
-				<?php
-					}
-				?>
-			
-				
-			</div>
-			
-			
-			
-			<div class="col-md-4">
-			    <div class="row text-center">
-				    <h4>on Sale</h4>
-				</div>
-				<?php
-					$i=0;
-					$q=mysqli_query($con,"select * from product limit $st,3");
-					while($row=mysqli_fetch_array($q)){
-					$i++;
-				  ?>
-				<div class="media mt-5">
-				<div class="row">
-					<div class="col-sm-12">
-						<img src="admin/productImages/<?php echo $row['image'] ?>" height="200" class=" pt-2" alt="media-img"><br/>
-					</div>
-				</div>
-					<div class="row">
-						<div class="col-sm-12">
-							<form method="post">
-						<div class="media-body text-center mt-5">
-							<h5><?php echo $row['productname']?></h5>
-							<h6>$<?php echo " ".$row['price']?></h6>
-							<input type="hidden" class="form-control-sm" id="jemail" 
-							  value="<?php echo $_COOKIE["em"];?> " disabled>
-							<input type="hidden" class="form-control-sm" id="jproductid"
-							  value="<?php echo $row["productid"];?> ">
-							<input type="hidden" class="form-control-sm" id="jprice"
-							  value="<?php echo $row["price"];?> " disabled>
-							<p>qty</p>
-							<input type="text" class="form-control-sm" id="jqty<?php echo $i;?>"  value="1" >
-				   </form>
-						   <?php
-							if(!isset($_COOKIE['em'])){
-						     ?>
-							<button data-toggle="modal" data-target="#myModal" class="btn btn-danger mt-2 ">
-									 add to cart</button>
-						   <?php
-							  } else {
-						    ?>
-						    <button class="btn btn-danger mt-2" onclick="cart(<?php echo $row['productid'];?>,
-							<?php echo $row['price']; ?>,<?php echo $i;?>)">Add To Cart</button>
-							 <?php
-								 }
-							   ?>
-					
-					
-					
-					
-						</div>
-					</div>
-					
-					
-					</div>
-				</div>
-				
-				<?php
-					}
-				?>
-			
-				
-			</div>
-			
-		</div>
-	</div>
-</div>
-	  </div>
 
-s
 
 
       

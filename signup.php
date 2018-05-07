@@ -52,7 +52,7 @@ include("connection.php");
             var re=/^[a-zA-Z0-9_]+[@][a-zA-Z0-9]+[.][a-zA-Z]{2,4}([.][a-zA-Z]{2,4})?$/;
 			var rename=/^[a-zA-Z]+$/;
 			var renum=/^\d{10}$/;
-			var repwd=/^[a-zA-Z]+[0-9]+[!@#$%^&*]$/
+			var repwd=/^\w{8}\d[!@#$%^&*=+-/]$/;
 			
             if(jemail=="")
                 {
@@ -183,7 +183,7 @@ include("connection.php");
             <div class="row">
                <div class="col-sm-2"></div>
                <div class="col-sm-8">
-                 <h5 class="signupheading pb-5" >create your account</h5>  
+                 <h5 class="signupheading pb-1" >create your account</h5>  
                </div>
                <div class="col-sm-2"></div>
                 
@@ -191,7 +191,7 @@ include("connection.php");
             <div class="row pt-1 pb-1">
                 <input type="text" id="txtemail" name="email" class="form-control" placeholder="email">
             </div>
-            <div class="row pt-1 pb1">
+            <div class="row pt-1 pb-1">
                 <input type="text" id="txtname" name="name" class="form-control" placeholder="name">
             </div>
             <div class="row pt-1 pb-1 radiobtn ">
@@ -199,22 +199,22 @@ include("connection.php");
                   <input type="radio" class="radiobtn" id="txtgender" value="female"> Female
                   <input type="radio" class="radiobtn" id="txtgender" value="other"> Other  
             </div>
-            <div class="row pt-1 pb1">
+            <div class="row pt-1 pb-1">
                 <input type="text" id="txtmobile" name="number" class="form-control" placeholder="number">
             </div>
-            <div class="row pt-1 pb1">
+            <div class="row pt-1 pb-1">
                 <input type="text" id="txtcity" name="city" class="form-control" placeholder="city">
             </div>
-            <div class="row pt-1 pb1">
+            <div class="row pt-1 pb-1">
                 <input type="text" id="txtaddress" name="address" class="form-control" placeholder="address">
             </div>
-            <div class="row pt-1 pb1">
+            <div class="row pt-1 pb-1">
                 <input type="password" id="txtpwd" name="pwd" class="form-control" placeholder="password">
             </div>
-            <div class="row pt-1 pb1">
+            <div class="row pt-1 pb-1">
                 <input type="password" id="txtcpwd" name="cpwd" class="form-control" placeholder="confirm-password">
             </div>
-            <div class="row pt-1  pb1">
+            <div class="row pt-1  pb-1">
                 <select name="question" id="txtquestion" class="form-control">
                     <option value="q1">1Lorem ipsum dolor sit.</option>
                     <option value="q2">2Lorem ipsum dolor sit.</option>
@@ -222,15 +222,15 @@ include("connection.php");
                     <option value="q4">4Lorem ipsum dolor sit.</option>
                   </select>
                 </div>
-            <div class="row pt-1 pb1">
+            <div class="row pt-1 ">
                 <input type="text" id="txtanswer" name="answer" class="form-control" placeholder="answer">
             </div> 
               </form>                                          
-           <div class="row pt-4 text-center">
+           <div class="row pt-1 text-center">
                <div class="col-sm-2"></div>
                <div class="col-sm-8 text-center">
-                 <button   onclick="return fun()" class="btn btn-outline-danger btn-lg">
-				   </button>
+                 <button   onclick="return fun()" class="btn btn-outline-info btn-lg">
+				  sign up </button>
                </div>
                <div class="col-sm-2"></div>
                 

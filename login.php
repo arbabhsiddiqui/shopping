@@ -10,7 +10,8 @@ $msg="";
     if(mysqli_num_rows($runsql)>0)
 	{
 		setcookie("em","$id");
-        }
+		$msg="valid";
+    }
     
     else{
         $msg="user not found";

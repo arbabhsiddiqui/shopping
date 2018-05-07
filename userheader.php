@@ -2,7 +2,7 @@
 include("connection.php");
 ?> 
 <!--    top bar-->
-          <div class="container-fluid bg-dark header-top d-none d-md-block">
+          <div class="container-fluid bg-topbar header-top d-none d-md-block">
 	    <div class="container">
 		    <div class="row text-light pt-2 pb-2">
 			    <div class="col-md-4"><i class="fa fa-envelope-o" aria-hidden="true"></i>moodyinks@gmail.com</div>
@@ -21,7 +21,7 @@ include("connection.php");
 					
 					   echo mysqli_num_rows($q);?>
 			    </a>
-			    </div
+				</div>
 			    <div class="col-md-2"><a href="cartsave.php"> My Cart
 			    <?php
 				$email=$_COOKIE['em'];	
@@ -32,15 +32,15 @@ include("connection.php");
 			?>
 			    </a>
 			    </div>
-			  >
+			  
 		    </div>
 	    </div>
     </div>
 <!--    top bar ends-->
 
     <!--nav bar    -->
-    <div class="container-fluid bg-black">
-	    <nav class="container navbar navbar-expand-lg navbar-dark bg-black">
+    <div class="container-fluid bg-navbar">
+	    <nav class="container navbar navbar-expand-lg navbar-dark ">
           <a class="navbar-brand" href="index.php"><img src="images/logo.png" alt="logo"></a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -72,6 +72,7 @@ include("connection.php");
     {
         ?>
         <a class="dropdown-item" href="product.php?catid=<?php echo $row["catid"];?>"><?php echo $row["catname"]; ?></a>
+               
                 <?php
     }
                         else
@@ -94,7 +95,7 @@ include("connection.php");
                 </div>
               </li>
               <li class="nav-item">
-                <a class="nav-link disabled" href="#">Disabled</a>
+                <a class="nav-link" href="ordersend.php">order list</a>
               </li>
               <li class="nav-item d-block d-md-none">
                 <button data-toggle="modal" data-target="#myModal" class="btn btn-none nav-link">
@@ -104,7 +105,7 @@ include("connection.php");
            </ul>
            <form class="form-inline my-2 my-lg-0">
               <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+              <button class="btn btn-info my-2 my-sm-0" type="submit">Search</button>
            </form>
          </div>
      </nav>

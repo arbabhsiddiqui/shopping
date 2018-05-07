@@ -59,6 +59,7 @@ if(isset($_REQUEST['btnupdate'])){
         $city=$row["city"];
         $address=$row["address"];
         $pic=$row["image"];
+		$pwd=$row['pwd'];
         
 		
 		
@@ -82,6 +83,72 @@ if(isset($_REQUEST['btnupdate'])){
     <link rel="stylesheet" href="css/style.css">
    
     <title>Hello, world!</title>
+    <script>
+	 function update(){
+		  var name=document.getElementById("txtname").value;
+		  var number=document.getElementById("txtmob").value;
+		  var city=document.getElementById("txtcity").value;
+		  var address=document.getElementById("txtaddress").value;
+		  var pwd=document.getElementById("txtpwd").value;
+		  var cpwd=document.getElementById("txtcpwd").value;
+		  
+		   var re=/^[a-zA-Z]+[ ]+[a-zA-Z]+$/;
+		  var numre=/^\d{10}$/;
+		 var re2=/^[a-zA-Z]+$/;
+		 	var repwd=/^[a-zA-z]+[0-9]+[^\w\s]+$/;
+		  
+		  if(name==""){
+			  alert("plz enter name");
+			  document.getElementById("txtname").focus();
+			  return false;
+		  }
+		 else if(!name.match(re)){
+			  alert("plz enter valid name");
+			  document.getElementById("txtname").focus();
+			  return false;
+		  }
+		 else if(number==""){
+			  alert("plz enter valid number");
+			  document.getElementById("txtmob").focus();
+			  return false;
+		  }
+		  else if(!number.match(numre)){
+			  alert("plz enter your phone number");
+			  document.getElementById("txtmob").focus();
+			  return false;
+		  }
+		  else if(city==""){
+			  alert("plz enter city name");
+			  document.getElementById("txtcity").focus();
+			  return false;
+		  }
+		 else if(!city.match(re2)){
+			  alert("plz enter valid city name");
+			  document.getElementById("txtcity").focus();
+			  return false;
+		  }
+		 else if(address==""){
+			  alert("plz enter your full address");
+			  document.getElementById("txtaddress").focus();
+			  return false;
+		  }
+		 else if(pwd==""){
+			  alert("plz enter your password");
+			  document.getElementById("txtpwd").focus();
+			  return false;
+		  }
+		 else if(pwd.match(repwd)){
+			  alert("plz create  your password with number and special charater");
+			  document.getElementById("txtpwd").focus();
+			  return false;
+		  }
+		 
+		  
+		  
+	  }
+	  
+	  
+	  </script>
     
     
     
@@ -133,13 +200,13 @@ if(isset($_REQUEST['btnupdate'])){
       
 <!-- welcome section     -->
       
-         <div class="container-fluid pt-4 text-light welcomebg " >
+         <div class="container-fluid pt-4  welcomebg " >
             <div class="row "> 
 <!--sidebar-->
                 <div class="col-sm-4   pt-4   ">
                     <div class="row ">
 				        <div class="col-sm-3"></div>
-                        <div class="col-sm-6">
+                        <div class="col-sm-6 pt-5">
                             <img src="images/<?php echo $pic; ?>" alt="sample" class="img-fluid">
                             <div class="row pt-3">
                                 <div class="col-sm-3"></div>
@@ -176,25 +243,33 @@ if(isset($_REQUEST['btnupdate'])){
                             <form method="post">
                                  <div class="form-group pt-1 pb-1">
                                     <label for="email">Name:</label>
-                                   <input type="text" class="form-control " name="name" value="<?php echo $name; ?>">
+                                   <input type="text" class="form-control " id="txtname" name="name" value="<?php echo $name; ?>">
                                 </div>
                                 <div class="form-group pt-1 pb-1">
                                     <label for="email">Number:</label>
-                                   <input type="text" class="form-control " name="mob" value="<?php echo $mob; ?>">
+                                   <input type="text" class="form-control " id="txtmob" name="mob" value="<?php echo $mob; ?>">
                                 </div>
                                 <div class="form-group pt-1 pb-1">
                                     <label for="email">City:</label>
-                                   <input type="text" class="form-control " name="city" value="<?php echo $city; ?>">
+                                   <input type="text" class="form-control " id="txtcity" name="city" value="<?php echo $city; ?>">
                                 </div>
                                 <div class="form-group pt-1 pb-1">
                                     <label for="email">Address:</label>
-                                   <input type="text" class="form-control " name="address" value="<?php echo $address; ?>">
+                                   <input type="text" class="form-control " id="txtaddress" name="address" value="<?php echo $address; ?>">
+                                </div>
+                                <div class="form-group pt-1 pb-1">
+                                    <label for="email">password:</label>
+                                   <input type="password" class="form-control " id="txtpwd" name="pwd" value="<?php echo $pwd; ?>">
+                                </div>
+                                <div class="form-group pt-1 pb-1">
+                                    <label for="email">confirm password:</label>
+                                   <input type="password" class="form-control " id="txtcpwd" name="cpwd" value="<?php echo $pwd; ?>">
                                 </div>   
                             
                                 <div class="row">
                                  <div class="col-sm-3"></div>
                                  <div class="col-sm-6">
-                                   <input type="submit" name="btnupdate" class="btn btn-info" value="update"> 
+                                   <input type="submit" name="btnupdate" onclick="return update()" class="btn btn-info" value="update"> 
                                  </div>
                                 <div class="col-sm-3"></div>
                                </div>
