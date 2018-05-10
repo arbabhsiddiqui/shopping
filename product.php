@@ -96,10 +96,15 @@ else{
        
 <!-- latest   product   -->
      <div class="container-fluid pt-5 	bg-color">
+     <?php
+		  $f=mysqli_query($con,"select * from cat   where catid=$catid");
+		 		$d=mysqli_fetch_array($f);
+		 
+		 ?>
 		<div class="container">
            <div class="row mb-3">
            	<div class="col-sm-12 text-center text-light">
-           		<h2>cases</h2>
+           		<h2><?php echo $d['catname']; ?></h2>
            	</div>
            </div>
             <div class="row pt-5 pb-5">

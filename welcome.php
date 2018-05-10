@@ -25,31 +25,6 @@ if(isset($_REQUEST['changeimg'])){
 }  //image changing code
 
 
-if(isset($_REQUEST['btnupdate'])){
-    
-    
-    
-        $name=$_REQUEST['name'];
-		$mob=$_REQUEST['mob'];
-        
-        $city=$_REQUEST['city'];
-        $address=$_REQUEST['address'];
-    
-     $runupdate=mysqli_query($con,"update users set name='$name',mobile='$mob',city='$city',address='$address' where email='$email'");
-    
-    if($runupdate==true)
-    {
-        $msg="data updated";
-    }
-    else
-    {
-        $msg="update users set name='$name',mobile='$mob',city='$city',address='$address' where email=$email";
-    }
-    
-    
-}//data updation code
-
-
 
 
 		$q=mysqli_query($con,"select * from users where email='$email'");
@@ -85,6 +60,7 @@ if(isset($_REQUEST['btnupdate'])){
     <title>Hello, world!</title>
     <script>
 	 function update(){
+		
 		  var name=document.getElementById("txtname").value;
 		  var number=document.getElementById("txtmob").value;
 		  var city=document.getElementById("txtcity").value;
@@ -97,6 +73,7 @@ if(isset($_REQUEST['btnupdate'])){
 		 var re2=/^[a-zA-Z]+$/;
 		 	var repwd=/^[a-zA-z]+[0-9]+[^\w\s]+$/;
 		  
+		
 		  if(name==""){
 			  alert("plz enter name");
 			  document.getElementById("txtname").focus();
@@ -142,10 +119,28 @@ if(isset($_REQUEST['btnupdate'])){
 			  document.getElementById("txtpwd").focus();
 			  return false;
 		  }
-		 
+		 else{
+			 var r=new XMLHttpRequest();
+				var t=Math.random();
+				r.onreadystatechange=function()
+				{
+					if(r.readyState==4)
+						{
+							
+						alert(r.responseText);
+						document.getElementById("txtname").value="";
+						}
+				}
+				r.open("post","updatedetails.php?s="+t+"&name="+name+"&number="+number+"&city="+city+"&address="+address+"&pwd="+pwd);
+				r.send();
+			 
+			 
+		 }
+	 }
+		
 		  
 		  
-	  }
+	  
 	  
 	  
 	  </script>
@@ -266,17 +261,19 @@ if(isset($_REQUEST['btnupdate'])){
                                    <input type="password" class="form-control " id="txtcpwd" name="cpwd" value="<?php echo $pwd; ?>">
                                 </div>   
                             
+                            
                                 <div class="row">
                                  <div class="col-sm-3"></div>
                                  <div class="col-sm-6">
-                                   <input type="submit" name="btnupdate" onclick="return update()" class="btn btn-info" value="update"> 
+                                   <input type="button" onclick="update()" class="btn btn-info" value="update"> 
                                  </div>
+                                 </form>
                                 <div class="col-sm-3"></div>
                                </div>
                                <div class="row pb-4">
                                  <div class="col-sm-3"></div>
                                  <div class="col-sm-6">
-                                  <h4 class="text-light"><?php echo $msg; ?></h4>
+                                  
                                  </div>
                                 <div class="col-sm-3"></div>
                                </div>
@@ -288,7 +285,6 @@ if(isset($_REQUEST['btnupdate'])){
                             
                             
                             
-                            </form>
                         </div>
                         <div class="col-sm-2"></div>
                     </div>    

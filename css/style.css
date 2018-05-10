@@ -135,7 +135,7 @@ background-color:#2C3E50;
 
 /*latest product */
 .card{
-	background: #F2F2F2;
+	background: #3498DB;
 	padding-top:10%;
 }
 
@@ -205,3 +205,33 @@ background: linear-gradient(to top, #3d72b4, #525252); /* W3C, IE 10+/ Edge, Fir
 footer{
 	background-color: #2C3E50;
 }
+
+
+/*wish list icon*/
+.imageholder{
+	position: relative;
+	padding: 0;
+	margin: 0;
+}
+
+.imageholder> img {
+  
+    width:  240px;
+    height: 240px;
+
+}
+
+.fa-heart{
+	position: absolute;
+	left:8%;
+	top:3%;
+	color:#000;
+}
+
+.fa-heart:hover{
+	
+	color: red;
+}
+
+
+/*wish list icon end*/

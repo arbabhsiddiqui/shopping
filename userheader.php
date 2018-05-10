@@ -1,41 +1,79 @@
 <?php
 include("connection.php");
-?> 
+?>
+<script>
+function fun(){
+		 
+					var t=Math.random
+					var r=new XMLHttpRequest();
+					r.onreadystatechange=function()
+					{
+						if(r.readyState==4)
+							{
+								 
+								document.getElementById("cart").innerHTML =r.responseText ;
+								
+							}
+					}
+					r.open("post","includes/autoupdatecart.php?s=" + t);
+					r.send();
+	}
+	 setInterval("fun()",1000);
+	function fun2(){
+		var t=Math.random
+					var r=new XMLHttpRequest();
+					r.onreadystatechange=function()
+					{
+						if(r.readyState==4)
+							{
+								 
+								document.getElementById("wish").innerHTML =r.responseText ;
+								
+							}
+					}
+					r.open("post","includes/autoupdatewishlist.php?s=" + t);
+					r.send();
+	}
+ setInterval("fun2()",1000);
+
+
+
+</script> 
 <!--    top bar-->
           <div class="container-fluid bg-topbar header-top d-none d-md-block">
-	    <div class="container">
-		    <div class="row text-light pt-2 pb-2">
-			    <div class="col-md-4"><i class="fa fa-envelope-o" aria-hidden="true"></i>moodyinks@gmail.com</div>
-			    
-			    <div class="col-md-2">
+	    <div class="row text-light pt-2 pb-2">
+		    <div class="col-sm-6">
+		    <div class="row">
+		    	<div class="col-md-4">moodyinks@gmail.com</div>
+		    </div>
+		   	</div>
+		   	<div class="col-sm-6">
+		   		<div class="row">
+	   			 <div class="col-md-3 text-center">
+					<a href="welcome.php"><i class="fas fa-user"></i></a>
+				</div>
+	   			 <div class="col-md-3  text-center"><a href="wishlistpage.php"><i  id="wish" class="fab fa-gratipay"></i>
+			     
+			    </a>
+				</div>
+	   			 <div class="col-md-3  text-center"><a href="cartsave.php"><i id='cart' class="fas fa-shopping-basket" ></i>
+	   			 
+			    </div>
+		   			 <div class="col-md-3 text-right">
 					<a href="logout.php">Logout</a>
 				</div>
-                <div class="col-md-2">
-					<a href="welcome.php">Edit profile</a>
-				</div>
-		      <div class="col-md-2"><a href="wishlist.php">wishlist
-			    <?php
-				$email=$_COOKIE['em'];	
-				$q=mysqli_query($con,"select * from wishlist where  email='$email' ");	
-						
-					
-					   echo mysqli_num_rows($q);?>
-			    </a>
-				</div>
-			    <div class="col-md-2"><a href="cartsave.php"> My Cart
-			    <?php
-				$email=$_COOKIE['em'];	
-				$q=mysqli_query($con,"select * from cart where  email='$email' ");	
-						
-					
-					   echo " : ".mysqli_num_rows($q);
-			?>
-			    </a>
-			    </div>
+		   		</div>
+		   	</div>
+			    
+			    
+			   
+                
+		      
+			    
 			  
 		    </div>
 	    </div>
-    </div>
+    
 <!--    top bar ends-->
 
     <!--nav bar    -->
@@ -51,49 +89,31 @@ include("connection.php");
               <li class="nav-item active">
                 <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  cat
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <?php
-                    $sq=mysqli_query($con,"select * from cat");
-                    
-                    while($row=mysqli_fetch_array($sq))
+              <?php
+                $q=mysqli_query($con,"select * from cat");
+                    while($row=mysqli_fetch_array($q))
                     {
-                    $cid=$row["catid"];  
-                    ?>
-                    <?php 
-                $take=mysqli_query($con,"select p.productname,p.price,p.image,p.catid,c.catid from product p,cat c where p.catid=c.catid and c.catid=$cid");
-    if(mysqli_num_rows($take)>0)
-    {
-        ?>
-        <a class="dropdown-item" href="product.php?catid=<?php echo $row["catid"];?>"><?php echo $row["catname"]; ?></a>
-               
-                <?php
-    }
-                        else
-                        {
-                            ?>
-                            <a class="dropdown-item" ><?php echo $row["catname"]; ?></a>
-                    
-                                    <?php
+                     $cid=$row["catid"];  
+                     $take=mysqli_query($con,"select p.productname,p.price,p.image,p.catid,c.catid from product p,cat c where p.catid=c.catid and c.catid=$cid");
+         				if(mysqli_num_rows($take)>0)
+    					{
+        	  ?>
+       		  <li class="nav-item ">
+        		<a class="nav-link" href="product.php?catid=<?php echo $row['catid'];?>"><?php echo $row["catname"]; ?></a>
+        	  </li>
+              <?php
                         }
-                    ?>
-                            
-                        
-                    <?php    
-                    }
-                    ?>
-                  <a class="dropdown-item" href="#">Action</a>
-                  <a class="dropdown-item" href="#">Another action</a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="#">Something else here</a>
-                </div>
+                       else
+                        {
+              ?>
+              <li class="nav-item ">
+     				<a class="nav-link" ><?php echo $row["catname"]; ?></a>   
               </li>
+              <?php
+                        }
+             }
+              ?>
+              
               <li class="nav-item">
                 <a class="nav-link" href="ordersend.php">order list</a>
               </li>

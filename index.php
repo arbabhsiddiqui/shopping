@@ -29,36 +29,42 @@ else{
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css" integrity="sha384-G0fIWCsCzJIMAVNQPfjH08cyYaUtMwjJwqiRKxxE/rx96Uroj1BtIQ6MLJuheaO9" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
    
     <title>Hello, world!</title>
       <script>
+		  
+	function wishlist(p,x){
 		
-	  /*function addtocart(){
-	 var email=document.getElementById('jemail').value;
-	  var productid=document.getElementById('jproductid').value;
-		var price=document.getElementById('jprice').value;
-		  var qty=document.getElementById('jqty').value;
-		   alert(qty);		
-				  var r=new XMLHttpRequest();
-				var t=Math.random();
-				r.onreadystatechange=function()
-				{
-					if(r.readyState==4)
-						{
-							alert(r.responseText);
-						}
-				}
-				r.open("post","cart.php?s="+t+"&email="+email+"&productid="+productid+"&price="+price+"&qty="+qty);
-				r.send();
-		  
-		  
+		var t=Math.random;
+					var r=new XMLHttpRequest();
+					r.onreadystatechange=function()
+					{
+						if(r.readyState==4)
+							{
+								if(r.responseText=='productadd'){
+									document.getElementById("wishicon"+x).style.color="red";
+								}
+								else if(r.responseText=='productremove') {
+									document.getElementById("wishicon"+x).style.color="#000";
+								}
+								else{
+									alert(r.responseText);
+								}
+							}
+					}
+					r.open("post","	includes/wishlist.php?s=" + t +"&id=" + p );
+					r.send();
+	
+		
+	}	
 	  
-	  }--*/
 	   	  function cart(x,p,i)		
 		{
+		
 			
 			var q=document.getElementById("jqty"+i).value;
 			if(q=="")
@@ -88,6 +94,7 @@ else{
 					r.send();
 				}
 		}
+		  
 	  </script>
     
     
@@ -214,7 +221,13 @@ else{
 				  ?>
 					<div class="col-sm-3 pt-2 pb-2">
 						<div class="card text-center">
-							<img height="230" src="admin/productImages/<?php echo $row['image']?>" alt="productimg" >
+						<div class="imageholder">
+							<img  src="admin/productImages/<?php echo $row['image']?>" alt="productimg" >
+							<span  >
+								<i  id="wishicon<?php echo $i; ?>" class="far fa-heart" onclick="wishlist(<?php echo $row['productid']?>,<?php echo $i; ?>)"></i>
+							
+							</span>
+							</div>
 							<div class="card-body">
 								<form method="post">
 									<h5><?php echo $row["productname"];?></h5>
@@ -226,7 +239,7 @@ else{
 									<input type="hidden" class="form-control-sm" id="jprice"
 									  value="<?php echo $row['price'];?> " disabled>
 									<p>qty</p>
-									<input type="text" class="form-control-sm" id="jqty+'<?php echo $i;?>'"  value="1">
+									<input type="text" class="form-control-sm" id="jqty<?php echo $i;?>"  value="1">
 								</form>
 								 <?php
 								   if(!isset($_COOKIE['em'])){
@@ -236,8 +249,8 @@ else{
 								<?php
 									} else {
 								?>
-								   <input type="button" class="btn btn-primary" onclick="cart(<?php echo $row['productid'];?>,
-									 <?php echo $row['price']; ?>,<?php echo $i;?>)" value="Add To Cartz">
+								  <input type="button" class="btn btn-primary" onclick="cart(<?php echo $row['productid'];?>,
+									 <?php echo $row['price']; ?>,<?php echo $i;?>)" value="Add To Cart">
 							   <?php
 								 }
 							   ?>
@@ -273,9 +286,15 @@ else{
 		<div class="col-sm-6 pt-5">
 		    <div class="row">
 		    	<div class="col-sm-2 productImages">
-		    		<img src="admin/productImages/<?php echo $row2['image']?>">
+		    		<div class="imageholder">
+							<img  src="admin/productImages/<?php echo $row2['image']?>" alt="productimg" >
+							<span  >
+							<i  id="wishicon<?php echo $i; ?>" class="far fa-heart" onclick="wishlist(<?php echo $row2['productid']?>,<?php echo $i; ?>)"></i>
+							
+							</span>
+							</div>
 		    	</div>
-		    	<div class="col-sm-4"></div>
+		    	<div class="col-sm-4"></div> 
 		    	<div class="col-sm-4">
 		    		<h6><?php echo $row2['productname'];?></h6>
 		    		<h6>price:<?php echo $row2['price'];?></h6>
@@ -288,7 +307,7 @@ else{
 									<input type="hidden" class="form-control" id="jprice"
 									  value="<?php echo $row['price'];?> " disabled>
 									<p>qty</p>
-									<input type="text" class="form-control" id="jqty+'<?php echo $i;?>'"  value="1">
+									<input type="text" class="form-control" id="jqty<?php echo $i;?>"  value="1">
 								</form>
 								 <?php
 								   if(!isset($_COOKIE['em'])){
@@ -298,8 +317,8 @@ else{
 								<?php
 									} else {
 								?>
-								   <input type="button" class="btn btn-outline-info" onclick="cart(<?php echo $row['productid'];?>,
-									 <?php echo $row['price']; ?>,<?php echo $i;?>)" value="Add To Cartz">
+								   <input type="button" class="btn btn-outline-info" onclick="cart(<?php echo $row2['productid'];?>,
+									 <?php echo $row2['price']; ?>,<?php echo $i;?>)" value="Add To Cartz">
 							   <?php
 								 }
 							   ?>

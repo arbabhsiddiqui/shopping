@@ -10,7 +10,11 @@ $number=$_REQUEST['num'];
 $address=$_REQUEST['address'];
 $name=$_REQUEST['name'];
 
+if($amt==0){
+	$msg="plz add some product";
+}
 
+else{
 $q=mysqli_query($con,"insert into productorder
 (orderdate,email,amt,status,number,address,name)
 values('$a','$email','$amt','$status','$number','$address','$name')");
@@ -29,8 +33,9 @@ while($row1=mysqli_fetch_array($qc))
 }
 
 $del=mysqli_query($con,"delete from cart where Email='$email'");
-
-echo "order success";
+	$msg="order confirm";
+}
+echo $msg;
 ?>
 
 
