@@ -93,204 +93,82 @@ else{
 
 
 
-   
- 
-     
+       
 <!-- latest   product   -->
-     <div class="container-fluid bg-color">
-<div class="container pt-5">
-	
-	<div class="container  pt-5 mt-5">
-	
-	<div class="row">
-	<?php 
-                $take=mysqli_query($con,"select p.productname,p.price,p.image,p.catid,p.productid,c.catid from product p,cat c where p.catid=c.catid and c.catid=$catid");
-    if(mysqli_num_rows($take)>0)
-    { 
-		$i=0;
-                while($t=mysqli_fetch_array($take))
-                {
-					$i++;
-                    ?>	
-		<div class="col-md-3 pt-2 pt-2">
-			<div class="card">
-		
-                    
-				<img height=250; src="admin/productImages/<?php echo $t["image"]; ?>" class="card-img-top">
-				<div class="card-body">
-				<form method="post">
-					<h5><?php echo $t["productname"];?></h5>
-					<h6>$<?php echo $t["price"];?></h6>
-					<!--
-					<input type="hidden" class="form-control-sm" id="jemail" value="<?php echo $_COOKIE["em"];?> " disabled>
-					<input type="hidden" class="form-control-sm" id="jproductid" value="<?php echo $t["productid"];?> ">
-					<input type="hidden" class="form-control-sm" id="jprice" value="<?php echo $t["price"];?> " disabled>
-					<p>qty</p>
--->
-					<input type="text" class="form-control-sm" id="jqty<?php echo $i;?>"  value="1">
-					
-					</form>
-					<?php
-					if(!isset($_COOKIE["em"])){
-					?>
-    				<button data-toggle="modal" data-target="#myModal" class="btn btn-danger ">add to cart</button>
-    				<?php
-
-					}
-					else{
-						?>
-    				<button class="btn btn-danger" onclick="cart(<?php echo $t["productid"];?>,<?php echo $t["price"]; ?>,
-    				<?php echo $i;?>)"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add To Cart</button>
-    				<?php
-    														}
-
-					
-					?>				
-					
-					</div>
-			</div>
-		</div>
-		<?php
-                
+     <div class="container-fluid pt-5 	bg-color">
+     <?php
+		  $f=mysqli_query($con,"select * from cat   where catid=$catid");
+		 		$d=mysqli_fetch_array($f);
+		 
+		 ?>
+		<div class="container">
+           <div class="row mb-3">
+           	<div class="col-sm-12 text-center text-light">
+           		<h2><?php echo $d['catname']; ?></h2>
+           	</div>
+           </div>
+            <div class="row pt-5 pb-5">
+		        <?php 
+                    $take=mysqli_query($con,"select p.productname,p.price,p.image,p.catid,p.productid,c.catid from product p,cat c where p.catid=c.catid and c.catid=$catid");
+    	            if(mysqli_num_rows($take)>0)
+    	            { 
+		                $i=0;
+                        while($t=mysqli_fetch_array($take))
+                        {
+					      $i++;
+               ?>	
+		       <div class="col-md-3 pt-2 pb-2">
+		           <div class="card pt-2 pb-2">
+	               <h5 class="text-center pb-2"><?php echo $t["productname"];?></h5>
+			   
+		               <img  src="admin/productImages/<?php echo $t["image"]; ?>" height="" class="productImages2">
+				       <div class="card-body">
+				           <form method="post">
+								
+								<h6>$<?php echo $t["price"];?></h6>
+								<input type="hidden" class="form-control-sm" id="jemail" value="<?php echo $_COOKIE["em"];?> " disabled>
+								<input type="hidden" class="form-control-sm" id="jproductid" value="<?php echo $t["productid"];?> ">
+								<input type="hidden" class="form-control-sm" id="jprice" value="<?php echo $t["price"];?> " disabled>
+								<p>qty</p>
+								<input type="text" class="form-control" id="jqty<?php echo $i;?>"  value="1">
+					      </form>
+					      <?php
+					        if(!isset($_COOKIE["em"])){
+					      ?>
+    				      <button data-toggle="modal" data-target="#myModal" class="btn btn-danger ">add to cart</button>
+    				      <?php
+                             }
+					       else{
+						  ?>
+    				      <button class="btn btn-danger" onclick="cart(<?php echo $t['productid'];?>,<?php echo $t['price'];?>,<?php echo $i;?>)"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add To Cart</button>
+    				      <?php
+    					    }
+                          ?>				
+					  </div>
+			       </div>
+		      </div>
+		      <?php
                 }
-    }
-    else
-    {    
-    ?>
-    <a style="color:white">OUT OF STOCK</a>
-    <?php
-    }
-    ?>
-			</div>
-	
+                }
+    	       else
+    	        {    
+              ?>
+              <a style="color:white">OUT OF STOCK</a>
+              <?php
+               }
+    	      ?>
+		</div>
 </div>
-      
+	  </div>   
       
 <!--new product-->
 
     
-<div class="container-fluid pt-5 pb-5">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-4">
-				<div class="row">
-					<h4>MOST WANTED</h4>
-				</div>
-				<div class="row">
-				    <div class="underline-green"></div>
-				</div>
-				<div class="media mt-5">
-					<img src="img/belts-823257_1920-540x500.jpg" class="img-fluid mr-3" alt="media-img">
-					<div class="media-body mt-2">
-						<h5>FITT Belts</h5>
-						<h6>$3.00</h6>
-						<button class="btn btn-success"><i class="fa fa-cart-plus" aria-hidden="true"> Add To Cart</i></button>
-					</div>
-				</div>
-				
-				
-				<div class="media mt-5">
-					<img src="img/fashion-731827_1920-540x500.jpg" class="img-fluid mr-3" alt="media-img">
-					<div class="media-body mt-2">
-						<h5>magnolia dress</h5>
-						<h6>$34.00</h6>
-						<button class="btn btn-success"><i class="fa fa-cart-plus" aria-hidden="true"> Add To Cart</i></button>
-					</div>
-				</div>
-				
-				<div class="media mt-5">
-					<img src="img/jeans-428614_1920-540x500.jpg" class="img-fluid mr-3" alt="media-img">
-					<div class="media-body mt-2">
-						<h5>Rocadi Jeans</h5>
-						<h6>$3.00</h6>
-						<button class="btn btn-success"><i class="fa fa-cart-plus" aria-hidden="true"> Add To Cart</i></button>
-					</div>
-				</div>
-			</div>
-			
-			
-			<div class="col-md-4">
-				<div class="row">
-					<h4>SCARFS</h4>
-				</div>
-				<div class="row">
-				    <div class="underline-blue"></div>
-				</div>
-				<div class="media mt-5">
-					<img src="img/a-neckerchief-1317830_1920-540x500.jpg" class="img-fluid mr-3" alt="media-img">
-					<div class="media-body mt-2">
-						<h5>Istwic Scarf</h5>
-						<h6>$3.00</h6>
-						<button class="btn btn-success"><i class="fa fa-cart-plus" aria-hidden="true"> Add To Cart</i></button>
-					</div>
-				</div>
-				
-				
-				<div class="media mt-5">
-					<img src="img/a-neckerchief-1315912_1920-540x500.jpg" class="img-fluid mr-3" alt="media-img">
-					<div class="media-body mt-2">
-						<h5>Jennifer Scarf</h5>
-						<h6>$34.00</h6>
-						<button class="btn btn-success"><i class="fa fa-cart-plus" aria-hidden="true"> Add To Cart</i></button>
-					</div>
-				</div>
-				
-				<div class="media mt-5">
-					<img src="img/a-neckerchief-1315916_1920-540x500.jpg" class="img-fluid mr-3" alt="media-img">
-					<div class="media-body mt-2">
-						<h5>Andora Scarf</h5>
-						<h6>$3.00</h6>
-						<button class="btn btn-success"><i class="fa fa-cart-plus" aria-hidden="true"> Add To Cart</i></button>
-					</div>
-				</div>
-			</div>
-			
-			
-			
-			<div class="col-md-4">
-				<div class="row">
-					<h4>ON SALE</h4>
-				</div>
-				<div class="row">
-				    <div class="underline-black"></div>
-				</div>
-				<div class="media mt-5">
-					<img src="img/woman-1484279_1920-540x500.jpg" class="img-fluid mr-3" alt="media-img">
-					<div class="media-body mt-2">
-						<h5>Marina Style</h5>
-						<h6>$3.00</h6>
-						<button class="btn btn-success"><i class="fa fa-cart-plus" aria-hidden="true"> Add To Cart</i></button>
-					</div>
-				</div>
-				
-				
-				<div class="media mt-5">
-					<img src="img/key-692199_1920-540x500.jpg" class="img-fluid mr-3" alt="media-img">
-					<div class="media-body mt-2">
-						<h5>Marina Style</h5>
-						<h6>$34.00</h6>
-						<button class="btn btn-success"><i class="fa fa-cart-plus" aria-hidden="true"> Add To Cart</i></button>
-					</div>
-				</div>
-				
-				<div class="media mt-5">
-					<img src="img/cute-955782_1920-540x500.jpg" class="img-fluid mr-3" alt="media-img">
-					<div class="media-body mt-2">
-						<h5>Manago Shirt</h5>
-						<h6>$3.00</h6>
-						<button class="btn btn-success"><i class="fa fa-cart-plus" aria-hidden="true"> Add To Cart</i></button>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
 
-	  </div>
 	  
 	  
 <!-- address bar-->
- <div class="container-fluid offer pt-3 pb-3 bg-orange d-none d-md-block">
+ <div class="container-fluid offer  pt-3 bg-orange d-none d-md-block">
 	<div class="container">
 		<div class="row">
 			<div class="col-md-4 m-right">

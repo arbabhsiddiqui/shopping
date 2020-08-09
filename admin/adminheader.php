@@ -26,25 +26,14 @@
 
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-              <li class="nav-item active">
-                <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
+              <li class="nav-item">
+                <a class="nav-link" href="addcat.php">add new cat</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
+                <a class="nav-link" href="addproduct.php">add new product</a>
               </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  add data
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="addcat.php">add cat</a>
-                  <a class="dropdown-item" href="addproduct.php">add product</a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="#">Something else here</a>
-                </div>
-              </li>
-             <li class="nav-item">
-                <a class="nav-link" href="#">dd</a>
+              <li class="nav-item">
+                <a class="nav-link" href="orderrecive.php">new orders</a>
               </li>
               <li class="nav-item d-block d-md-none">
                 <a class="nav-link" href="logout.php">logout</a>

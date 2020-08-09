@@ -1,5 +1,5 @@
-
-	<div class="container-fluid pt-5 bg-dark text-light ">
+<footer>
+	<div class="container-fluid pt-5  text-light ">
 		<div class="container">
 			<div class="row ">
 				<div class="col-md-3">
@@ -69,7 +69,7 @@
 
 </div>
 
-
+</footer>
 
 
 
